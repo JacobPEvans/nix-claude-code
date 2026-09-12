@@ -38,8 +38,7 @@ jobs:
     # so Nix could reach `develop` never having been evaluated, formatted, or
     # lib-tested. `ci.yml` does not cover the gap: it fires only on `main`.
     with:
-      markdown_lint: true
-      file_size: true
+      osv_scan: true
       nix_validate: true
       # treefmt/pre-commit checks are platform-specific; restrict to the
       # runner's system (x86_64-linux), matching ci.yml. The org default is
