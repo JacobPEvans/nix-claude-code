@@ -10,7 +10,7 @@ _: pluginPath:
 # strings. We pass them through unchanged in `raw` and surface a `null`
 # default for the typed fields so consumers can branch on presence.
 let
-  manifestPath = "${pluginPath}/.claude-plugin/plugin.json";
+  manifestPath = pluginPath + "/.claude-plugin/plugin.json";
   hasManifest = builtins.pathExists manifestPath;
   manifest = if hasManifest then builtins.fromJSON (builtins.readFile manifestPath) else { };
 in

@@ -12,7 +12,7 @@ _: marketplacePath:
 # Returns an attrset with normalized fields plus `raw` for callers that need
 # to access spec extensions we don't yet model.
 let
-  manifestPath = "${marketplacePath}/.claude-plugin/marketplace.json";
+  manifestPath = marketplacePath + "/.claude-plugin/marketplace.json";
   hasManifest = builtins.pathExists manifestPath;
   manifest = if hasManifest then builtins.fromJSON (builtins.readFile manifestPath) else { };
   metadata = manifest.metadata or { };
