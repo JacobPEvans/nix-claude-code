@@ -6,7 +6,7 @@ pluginRoot:
 # callers can parse YAML with their preferred tool (Nix has no built-in
 # YAML parser).
 let
-  skillsDir = "${pluginRoot}/skills";
+  skillsDir = pluginRoot + "/skills";
   hasSkillsDir = builtins.pathExists skillsDir;
 
   entries = if hasSkillsDir then builtins.readDir skillsDir else { };
@@ -15,7 +15,7 @@ let
   mkSkill =
     name: _:
     let
-      skillFile = "${skillsDir}/${name}/SKILL.md";
+      skillFile = skillsDir + "/${name}/SKILL.md";
     in
     if builtins.pathExists skillFile then
       {

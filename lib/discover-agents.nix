@@ -4,7 +4,7 @@ pluginRoot:
 # Returns the same shape as `discoverSkills`/`discoverCommands` so
 # callers can iterate uniformly when building settings.json entries.
 let
-  agentsDir = "${pluginRoot}/agents";
+  agentsDir = pluginRoot + "/agents";
   hasAgentsDir = builtins.pathExists agentsDir;
 
   entries = if hasAgentsDir then builtins.readDir agentsDir else { };
@@ -12,7 +12,7 @@ let
 
   mkAgent = filename: _: {
     name = lib.removeSuffix ".md" filename;
-    path = "${agentsDir}/${filename}";
+    path = agentsDir + "/${filename}";
     inherit pluginRoot;
   };
 in
