@@ -35,4 +35,12 @@
     fileName = "session-end.sh";
     claudeEvent = "SessionEnd";
   };
+  worktreeCreate = {
+    fileName = "worktree-create.sh";
+    claudeEvent = "WorktreeCreate";
+  };
+  worktreeRemove = {
+    fileName = "worktree-remove.sh";
+    claudeEvent = "WorktreeRemove";
+  };
 }

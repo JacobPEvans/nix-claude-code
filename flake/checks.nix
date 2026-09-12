@@ -120,6 +120,22 @@
           GUARD = ../modules/hooks/keychain-secret-read-guard.sh;
         } "bash ${../tests/keychain-secret-read-guard-test.sh}";
 
+        # Worktree hooks: create lands at <repo>/.worktrees/<name> on branch
+        # <name> (also from inside another worktree); remove drops both.
+        worktree-hooks =
+          let
+            commands = import ../lib/worktree-hook-commands.nix;
+          in
+          pkgs.runCommand "worktree-hooks-test" {
+            nativeBuildInputs = [
+              pkgs.jq
+              pkgs.bash
+              pkgs.git
+            ];
+            CREATE = pkgs.writeShellScript "worktree-create" commands.create;
+            REMOVE = pkgs.writeShellScript "worktree-remove" commands.remove;
+          } "bash ${../tests/worktree-hooks-test.sh}";
+
         # The marketplace-refresh hook must refresh whatever the live session
         # count is. Reinstalling is additive, and Claude Code defers its own
         # overwrite/relink of a version dir a peer holds via .in_use. Deferring
