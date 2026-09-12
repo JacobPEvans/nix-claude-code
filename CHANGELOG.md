@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 with a permanent pre-1.0 cadence — see `release-please-config.json`.
 
+## [1.12.0](https://github.com/dryvist/nix-claude-code/compare/v1.11.0...v1.12.0) (2026-09-12)
+
+
+### Features
+
+* **permissions:** deny security dump-keychain and export ([fbae0d1](https://github.com/dryvist/nix-claude-code/commit/fbae0d1e460b8608a1c7db20c7969bb520e05ca0))
+* **permissions:** deny security dump-keychain and export ([097117b](https://github.com/dryvist/nix-claude-code/commit/097117b38c983df6430115a48da2cbb7b9395cb9))
+
 ## [1.11.0](https://github.com/dryvist/nix-claude-code/compare/v1.10.1...v1.11.0) (2026-09-12)
 
 
