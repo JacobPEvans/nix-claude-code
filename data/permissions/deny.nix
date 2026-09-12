@@ -72,6 +72,14 @@ _:
     "gh repo archive"
     "gh repo delete"
     "gh secret"
+    # `security dump-keychain` decrypts every item in a keychain (`dump` is
+    # its alias; `export` writes keys/certs out). Each item fires an
+    # authorization prompt to the operator, and a full dump is never the
+    # right way to find one item: `security find-generic-password -s <name>`
+    # answers directly, and `list-keychains` still enumerates keychains.
+    "security dump"
+    "security dump-keychain"
+    "security export"
     "npm publish"
     "cargo publish"
 
