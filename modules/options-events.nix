@@ -41,6 +41,25 @@ in
         default = null;
       };
 
+      worktreeCreate = lib.mkOption {
+        type = hookType;
+        default = null;
+      };
+      worktreeRemove = lib.mkOption {
+        type = hookType;
+        default = null;
+      };
+
+      # High-level toggle: wires worktreeCreate/worktreeRemove to vendored
+      # scripts that replace Claude Code's built-in worktree placement.
+      worktreesUnderRepo = lib.mkEnableOption ''
+        repo-root worktree placement. When enabled, `EnterWorktree` and
+        `--worktree` create every worktree at `<repo>/.worktrees/<name>/` on
+        a branch named `<name>` (from `origin/HEAD` when known), and
+        `ExitWorktree` removes that worktree and branch. Replaces the
+        upstream default of `<repo>/.claude/worktrees/`.
+      '';
+
       # High-level toggle: wires postToolUse to a vendored capture script.
       captureSessionOutput = lib.mkEnableOption ''
         session-output capture hook. When enabled, sets `postToolUse` to

@@ -12,11 +12,14 @@
 #                                → preToolUse runs `private-workspace-agent-guard.sh`
 #   - hooks.blockKeychainSecretReads
 #                                → preToolUse runs `keychain-secret-read-guard.sh`
+#   - hooks.worktreesUnderRepo   → worktreeCreate/worktreeRemove run the git
+#                                  commands in `lib/worktree-hook-commands.nix`
 { config, lib, ... }:
 let
   cfg = config.programs.claude;
 
   hookEventMapping = import ../lib/hook-event-mapping.nix;
+  worktreeHookCommands = import ../lib/worktree-hook-commands.nix;
 
   mkHookFile =
     _hookName: fileName: hookValue:
@@ -71,6 +74,10 @@ in
     })
     (lib.mkIf (cfg.enable && cfg.hooks.blockKeychainSecretReads) {
       programs.claude.hooks.preToolUse = lib.mkDefault ./hooks/keychain-secret-read-guard.sh;
+    })
+    (lib.mkIf (cfg.enable && cfg.hooks.worktreesUnderRepo) {
+      programs.claude.hooks.worktreeCreate = lib.mkDefault worktreeHookCommands.create;
+      programs.claude.hooks.worktreeRemove = lib.mkDefault worktreeHookCommands.remove;
     })
 
     # Materialize all configured hooks as executable files.
