@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 with a permanent pre-1.0 cadence — see `release-please-config.json`.
 
+## [1.11.0](https://github.com/dryvist/nix-claude-code/compare/v1.10.1...v1.11.0) (2026-09-12)
+
+
+### Features
+
+* **hooks:** worktreesUnderRepo places worktrees at &lt;repo&gt;/.worktrees/&lt;name&gt; ([#242](https://github.com/dryvist/nix-claude-code/issues/242)) ([8fffa9b](https://github.com/dryvist/nix-claude-code/commit/8fffa9babeffb26ea2d0669946c0f7d7bce9f201))
+
 ## [1.10.1](https://github.com/dryvist/nix-claude-code/compare/v1.10.0...v1.10.1) (2026-09-05)
 
 
