@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 with a permanent pre-1.0 cadence — see `release-please-config.json`.
 
+## [1.13.0](https://github.com/dryvist/nix-claude-code/compare/v1.12.0...v1.13.0) (2026-09-13)
+
+
+### Features
+
+* **latest:** opt-in Claude Code install during home-manager activation ([#253](https://github.com/dryvist/nix-claude-code/issues/253)) ([b9592b0](https://github.com/dryvist/nix-claude-code/commit/b9592b0486e46dbfcdadf33a2cb719db58763b64))
+
+
+### Bug Fixes
+
+* **lib:** keep plugin roots as path values in discovery ([#251](https://github.com/dryvist/nix-claude-code/issues/251)) ([9bbc832](https://github.com/dryvist/nix-claude-code/commit/9bbc83253f5ecfe4ed77971243bab6375d72e35c))
+
 ## [1.12.0](https://github.com/dryvist/nix-claude-code/compare/v1.11.0...v1.12.0) (2026-09-12)
 
 
