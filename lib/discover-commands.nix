@@ -5,7 +5,7 @@ pluginRoot:
 # directory remains widely populated in published plugins so the
 # discovery API stays.
 let
-  commandsDir = "${pluginRoot}/commands";
+  commandsDir = pluginRoot + "/commands";
   hasCommandsDir = builtins.pathExists commandsDir;
 
   entries = if hasCommandsDir then builtins.readDir commandsDir else { };
@@ -13,7 +13,7 @@ let
 
   mkCommand = filename: _: {
     name = lib.removeSuffix ".md" filename;
-    path = "${commandsDir}/${filename}";
+    path = commandsDir + "/${filename}";
     inherit pluginRoot;
   };
 in

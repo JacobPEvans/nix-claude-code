@@ -6,6 +6,6 @@ _: pluginRoot:
 # Returns `{ }` (empty attrset) when no `hooks/hooks.json` exists so
 # callers can compose without conditional plumbing.
 let
-  hooksPath = "${pluginRoot}/hooks/hooks.json";
+  hooksPath = pluginRoot + "/hooks/hooks.json";
 in
 if builtins.pathExists hooksPath then builtins.fromJSON (builtins.readFile hooksPath) else { }

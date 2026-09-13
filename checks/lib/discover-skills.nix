@@ -35,7 +35,7 @@ in
   };
 
   "test (skills): each entry includes path to SKILL.md" = {
-    expr = lib.hasSuffix "/SKILL.md" (builtins.head (discoverSkills pluginFixture)).path;
+    expr = lib.hasSuffix "/SKILL.md" (toString (builtins.head (discoverSkills pluginFixture)).path);
     expected = true;
   };
 
