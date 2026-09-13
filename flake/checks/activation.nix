@@ -52,6 +52,29 @@ let
     };
   };
 
+  # `latest.installOnActivation` is gated on pkgs.stdenv.isDarwin same as
+  # `latest.enable` itself — on x86_64-linux CI the module stays inert
+  # either way, so only the darwin leg of this check actually exercises the
+  # activation entry; the linux leg proves it stays absent by default.
+  latestInstallOnActivationTrue = mkActivation {
+    programs.claude = {
+      enable = true;
+      package = null;
+      latest = {
+        enable = true;
+        installOnActivation = true;
+      };
+    };
+  };
+
+  latestInstallOnActivationFalse = mkActivation {
+    programs.claude = {
+      enable = true;
+      package = null;
+      latest.enable = true;
+    };
+  };
+
   outputStyleActivation = mkActivation {
     programs.claude = {
       enable = true;
@@ -174,6 +197,16 @@ in
         expect '.minimumVersion' '"2.1.251"'
         echo ok > $out
       '';
+
+  # `latest.installOnActivation` must register the activation entry only
+  # when set, and only on darwin (the module's own gate).
+  latest-install-on-activation = pkgs.runCommand "latest-install-on-activation-test" { } ''
+    set -euo pipefail
+    grep -q "claude-latest-install" ${latestInstallOnActivationFalse}/activate && exit 1
+    test ${if pkgs.stdenv.isDarwin then "1" else "0"} -eq 0 || \
+      grep -q "claude-latest-install" ${latestInstallOnActivationTrue}/activate
+    echo ok > $out
+  '';
 
   # Every new policy/sandbox option defaults to null, so a consumer that sets
   # none of them gets a settings.json with none of them present. This is the
