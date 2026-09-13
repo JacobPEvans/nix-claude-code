@@ -32,9 +32,26 @@ in
       Run the command manually once; Claude Code self-updates thereafter
       via `claude update`.
     '';
+
+    installOnActivation = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        Run `claude-latest-install` during home-manager activation, so every
+        user profile that enables it gets the binary without a manual step.
+        The installer is a no-op once installed. Requires network access on
+        first activation.
+      '';
+    };
   };
 
   config = lib.mkIf (config.programs.claude.enable && cfg.enable && pkgs.stdenv.isDarwin) {
     home.packages = [ installScript ];
+
+    home.activation = lib.mkIf cfg.installOnActivation {
+      claudeLatestInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD ${installScript}/bin/claude-latest-install
+      '';
+    };
   };
 }
